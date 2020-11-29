@@ -18,7 +18,7 @@ function ListingDetailsScreen(props) {
                 <View style={styles.userContainer}>
                     <ListItem
                         image={require('../assets/raju.jpeg')}
-                        title='Mosh Hamedani'
+                        title='Rajender Singh Banoula'
                         subTitle='5 Listings'
                     />
                 </View>
