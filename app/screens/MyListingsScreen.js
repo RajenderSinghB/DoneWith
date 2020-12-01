@@ -11,20 +11,19 @@ import {
 const initialMessages = [
     {
         id: 1,
-        title: 'Rajender Singh Banoula',
-        description: 'Hey! Is this item still available?',
-        image: require('../assets/raju.jpeg'),
+        title: 'Red Jacket',
+        description: 'Hey! Do you want a Jacket?',
+        image: require('../assets/jacket.jpg'),
     },
     {
         id: 2,
-        title: 'Rajender Singh Banoula',
-        description:
-            "I'm interested in this item. When will you be able to post it?",
-        image: require('../assets/raju.jpeg'),
+        title: 'Room & Board Couch',
+        description: 'Ping me! If you are interested ',
+        image: require('../assets/couch.jpg'),
     },
 ];
 
-function MessagesScreen(props) {
+function MyListingsScreen(props) {
     const [messages, setMessages] = useState(initialMessages);
     const [refreshing, setRefreshing] = useState(false);
 
@@ -70,4 +69,4 @@ function MessagesScreen(props) {
 
 const styles = StyleSheet.create({});
 
-export default MessagesScreen;
+export default MyListingsScreen;
