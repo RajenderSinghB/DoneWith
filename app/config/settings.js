@@ -1,14 +1,26 @@
 import Constants from 'expo-constants';
 
+// const settings = {
+//     dev: {
+//         apiUrl: 'http://192.168.1.5:9000/api',
+//     },
+//     staging: {
+//         apiUrl: 'http://192.168.1.5:9000/api',
+//     },
+//     prod: {
+//         apiUrl: 'http://192.168.1.5:9000/api',
+//     },
+// };
+
 const settings = {
     dev: {
-        apiUrl: 'http://192.168.1.5:9000/api',
+        apiUrl: 'https://donewithit--api.herokuapp.com/api',
     },
     staging: {
-        apiUrl: 'http://192.168.1.5:9000/api',
+        apiUrl: 'https://donewithit--api.herokuapp.com/api',
     },
     prod: {
-        apiUrl: 'http://192.168.1.5:9000/api',
+        apiUrl: 'https://donewithit--api.herokuapp.com/api',
     },
 };
 
