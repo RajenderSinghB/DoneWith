@@ -1,43 +1,34 @@
-import { StatusBar } from 'expo-status-bar';
-import React, { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import WelcomeScreen from './app/screens/WelcomeScreen';
-import MessagesScreen from './app/screens/MessagesScreen';
-import Icon from './app/components/Icon';
-import Screen from './app/components/Screen';
-import ListItem from './app/components/ListItem';
-import AccountScreen from './app/screens/AccountScreen';
-import ListingsScreen from './app/screens/ListingsScreen';
-import AppTextInput from './app/components/AppTextInput';
-import AppPicker from './app/components/AppPicker';
+import React, { useState } from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { AppLoading } from "expo";
 
-const categories = [
-    {
-        label: 'Furniture',
-        value: 1,
-    },
-    {
-        label: 'Clothing',
-        value: 2,
-    },
-    {
-        label: 'Cameras',
-        value: 3,
-    },
-];
+import navigationTheme from "./app/navigation/navigationTheme";
+import AppNavigator from "./app/navigation/AppNavigator";
+import OfflineNotice from "./app/components/OfflineNotice";
+import AuthNavigator from "./app/navigation/AuthNavigator";
+import AuthContext from "./app/auth/context";
+import authStorage from "./app/auth/storage";
 
 export default function App() {
-    const [category, setCategory] = useState(categories[0]);
+  const [user, setUser] = useState();
+  const [isReady, setIsReady] = useState(false);
+
+  const restoreUser = async () => {
+    const user = await authStorage.getUser();
+    if (user) setUser(user);
+  };
+
+  if (!isReady)
     return (
-        <Screen>
-            <AppPicker
-                selectedItem={category}
-                onSelectItem={(item) => setCategory(item)}
-                items={categories}
-                placeholder='Username'
-                icon='th'
-            />
-            <AppTextInput placeholder='Username' icon='envelope' />
-        </Screen>
+      <AppLoading startAsync={restoreUser} onFinish={() => setIsReady(true)} />
     );
+
+  return (
+    <AuthContext.Provider value={{ user, setUser }}>
+      <OfflineNotice />
+      <NavigationContainer theme={navigationTheme}>
+        {user ? <AppNavigator /> : <AuthNavigator />}
+      </NavigationContainer>
+    </AuthContext.Provider>
+  );
 }
